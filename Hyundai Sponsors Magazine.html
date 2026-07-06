@@ -66,7 +66,7 @@
         "
       >
         <!-- WELCOME MODAL -->
-        <div
+        <!-- <div
           data-welcome="true"
           style="
             position: fixed;
@@ -296,23 +296,28 @@
               первом печатном номере: почему мы видим в нём место для Hyundai и
               проект, который придумали под ваш бренд.
             </p>
-            <button
-              type="button"
-              data-welcome-close
+            <div
+              data-welcome-close="true"
+              data-i18n="wBtn"
               style="
                 font-family: &quot;IBM Plex Mono&quot;, monospace;
                 font-size: 13px;
                 color: #fff;
                 background: #002c5f;
                 padding: 16px 26px;
-                border: none;
+                display: inline-block;
                 cursor: pointer;
+                transition:
+                  background 0.15s,
+                  color 0.15s,
+                  box-shadow 0.15s;
               "
+              style-hover="background:#fff; color:#002C5F; box-shadow:inset 0 0 0 1px #002C5F;"
             >
               Смотреть предложение →
-            </button>
+            </div>
           </div>
-        </div>
+        </div> -->
 
         <!-- HEADER -->
         <header
