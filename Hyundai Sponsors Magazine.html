@@ -1,0 +1,2372 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script src="./support.js"></script>
+  </head>
+  <body>
+    <x-dc>
+      <helmet>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+          href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&display=swap"
+          rel="stylesheet"
+        />
+        <style>
+          body {
+            margin: 0;
+            background: #ffffff;
+          }
+          * {
+            box-sizing: border-box;
+          }
+          @keyframes ticker {
+            from {
+              transform: translateX(0);
+            }
+            to {
+              transform: translateX(-50%);
+            }
+          }
+          @keyframes confettiFall {
+            0% {
+              transform: translateY(-8vh) rotate(0deg);
+              opacity: 1;
+            }
+            100% {
+              transform: translateY(108vh) rotate(680deg);
+              opacity: 0;
+            }
+          }
+          @keyframes modalIn {
+            from {
+              opacity: 0;
+              transform: translateY(16px);
+            }
+            to {
+              opacity: 1;
+              transform: translateY(0);
+            }
+          }
+        </style>
+      </helmet>
+
+      <div
+        style="
+          background: #ffffff;
+          color: #111111;
+          font-family:
+            -apple-system, BlinkMacSystemFont, &quot;SF Pro Display&quot;,
+            &quot;SF Pro Text&quot;, &quot;Helvetica Neue&quot;, Helvetica,
+            Arial, sans-serif;
+          width: 100%;
+          overflow-x: hidden;
+        "
+      >
+        <!-- WELCOME MODAL -->
+        <div
+          data-welcome="true"
+          style="
+            position: fixed;
+            inset: 0;
+            z-index: 100;
+            background: rgba(17, 17, 17, 0.45);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+            transition: opacity 0.3s;
+            overflow: hidden;
+          "
+        >
+          <span
+            style="
+              position: absolute;
+              top: -40px;
+              left: 8%;
+              width: 8px;
+              height: 14px;
+              background: #002c5f;
+              animation: confettiFall 3.2s linear 0s infinite;
+            "
+          ></span>
+          <span
+            style="
+              position: absolute;
+              top: -40px;
+              left: 18%;
+              width: 8px;
+              height: 14px;
+              background: #7ea6d9;
+              animation: confettiFall 4.1s linear 0.8s infinite;
+            "
+          ></span>
+          <span
+            style="
+              position: absolute;
+              top: -40px;
+              left: 28%;
+              width: 8px;
+              height: 14px;
+              background: #e5e5e5;
+              animation: confettiFall 3.6s linear 1.6s infinite;
+            "
+          ></span>
+          <span
+            style="
+              position: absolute;
+              top: -40px;
+              left: 38%;
+              width: 8px;
+              height: 14px;
+              background: #002c5f;
+              animation: confettiFall 4.4s linear 0.4s infinite;
+            "
+          ></span>
+          <span
+            style="
+              position: absolute;
+              top: -40px;
+              left: 48%;
+              width: 8px;
+              height: 14px;
+              background: #7ea6d9;
+              animation: confettiFall 3.3s linear 2.1s infinite;
+            "
+          ></span>
+          <span
+            style="
+              position: absolute;
+              top: -40px;
+              left: 58%;
+              width: 8px;
+              height: 14px;
+              background: #e5e5e5;
+              animation: confettiFall 4s linear 1.2s infinite;
+            "
+          ></span>
+          <span
+            style="
+              position: absolute;
+              top: -40px;
+              left: 68%;
+              width: 8px;
+              height: 14px;
+              background: #002c5f;
+              animation: confettiFall 3.8s linear 0.6s infinite;
+            "
+          ></span>
+          <span
+            style="
+              position: absolute;
+              top: -40px;
+              left: 78%;
+              width: 8px;
+              height: 14px;
+              background: #7ea6d9;
+              animation: confettiFall 4.3s linear 1.9s infinite;
+            "
+          ></span>
+          <span
+            style="
+              position: absolute;
+              top: -40px;
+              left: 88%;
+              width: 8px;
+              height: 14px;
+              background: #e5e5e5;
+              animation: confettiFall 3.5s linear 0.2s infinite;
+            "
+          ></span>
+          <span
+            style="
+              position: absolute;
+              top: -40px;
+              left: 13%;
+              width: 8px;
+              height: 14px;
+              background: #7ea6d9;
+              animation: confettiFall 4.6s linear 2.6s infinite;
+            "
+          ></span>
+          <span
+            style="
+              position: absolute;
+              top: -40px;
+              left: 53%;
+              width: 8px;
+              height: 14px;
+              background: #002c5f;
+              animation: confettiFall 4.8s linear 3s infinite;
+            "
+          ></span>
+          <span
+            style="
+              position: absolute;
+              top: -40px;
+              left: 93%;
+              width: 8px;
+              height: 14px;
+              background: #002c5f;
+              animation: confettiFall 3.9s linear 2.3s infinite;
+            "
+          ></span>
+
+          <div
+            style="
+              background: #fff;
+              max-width: 600px;
+              width: 100%;
+              padding: 56px 48px;
+              position: relative;
+              animation: modalIn 0.45s ease-out;
+            "
+          >
+            <div
+              style="
+                display: flex;
+                align-items: center;
+                gap: 16px;
+                margin-bottom: 32px;
+              "
+            >
+              <span
+                style="
+                  font-weight: 900;
+                  font-size: 16px;
+                  line-height: 0.92;
+                  letter-spacing: -0.02em;
+                "
+                ><span style="display: block">made</span
+                ><span style="display: block; padding-left: 14px"
+                  >niet</span
+                ></span
+              >
+              <span
+                style="
+                  font-family: &quot;IBM Plex Mono&quot;, monospace;
+                  font-size: 14px;
+                  color: #002c5f;
+                "
+                >×</span
+              >
+              <img
+                src="uploads/Hyundai%20Logo%201990.png"
+                alt="Hyundai"
+                style="height: 34px; width: auto; display: block"
+              />
+            </div>
+            <div
+              data-i18n="wKicker"
+              style="
+                font-family: &quot;IBM Plex Mono&quot;, monospace;
+                font-size: 12px;
+                letter-spacing: 0.03em;
+                color: #002c5f;
+                text-transform: lowercase;
+                margin-bottom: 16px;
+              "
+            >
+              персональное предложение — hyundai auto kazakhstan
+            </div>
+            <h2
+              data-i18n="wTitle"
+              style="
+                font-size: clamp(28px, 4vw, 40px);
+                font-weight: 900;
+                letter-spacing: -0.02em;
+                line-height: 1.05;
+                margin: 0 0 16px;
+              "
+            >
+              Здравствуйте, команда Hyundai!
+            </h2>
+            <p
+              data-i18n="wText"
+              style="
+                font-size: 17px;
+                line-height: 1.55;
+                margin: 0 0 36px;
+                color: #111;
+              "
+            >
+              Мы — журнал Madeniet. Внутри — предложение о партнёрстве в нашем
+              первом печатном номере: почему мы видим в нём место для Hyundai и
+              проект, который придумали под ваш бренд.
+            </p>
+            <button
+              type="button"
+              data-welcome-close
+              style="
+                font-family: &quot;IBM Plex Mono&quot;, monospace;
+                font-size: 13px;
+                color: #fff;
+                background: #002c5f;
+                padding: 16px 26px;
+                border: none;
+                cursor: pointer;
+              "
+            >
+              Смотреть предложение →
+            </button>
+          </div>
+        </div>
+
+        <!-- HEADER -->
+        <header
+          id="top"
+          style="
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 28px 24px;
+            gap: 24px;
+            flex-wrap: wrap;
+          "
+        >
+          <div
+            style="
+              font-family: &quot;IBM Plex Mono&quot;, monospace;
+              font-size: 12px;
+              letter-spacing: 0.02em;
+              display: flex;
+              gap: 18px;
+              flex-wrap: wrap;
+            "
+          >
+            <a
+              data-i18n="nav1"
+              href="#why"
+              style="color: #111; text-decoration: none"
+              style-hover="text-decoration:underline;"
+              >почему вы</a
+            ><span style="color: #888">—</span>
+            <a
+              data-i18n="nav4"
+              href="#routes"
+              style="color: #111; text-decoration: none"
+              style-hover="text-decoration:underline;"
+              >идея</a
+            ><span style="color: #888">—</span>
+            <a
+              data-i18n="nav2"
+              href="#offer"
+              style="color: #111; text-decoration: none"
+              style-hover="text-decoration:underline;"
+              >предложение</a
+            ><span style="color: #888">—</span>
+            <a
+              data-i18n="nav3"
+              href="#contacts"
+              style="color: #111; text-decoration: none"
+              style-hover="text-decoration:underline;"
+              >контакты</a
+            >
+          </div>
+          <div style="display: flex; align-items: center; gap: 20px">
+            <a
+              href="#top"
+              style="
+                font-weight: 900;
+                font-size: 20px;
+                line-height: 0.92;
+                letter-spacing: -0.02em;
+                color: #111;
+                text-decoration: none;
+              "
+            >
+              <div>made</div>
+              <div style="padding-left: 18px">niet</div>
+            </a>
+            <span
+              style="
+                font-family: &quot;IBM Plex Mono&quot;, monospace;
+                font-size: 16px;
+                color: #002c5f;
+              "
+              >×</span
+            >
+            <img
+              src="uploads/Hyundai%20Logo%201990.png"
+              alt="Hyundai"
+              style="height: 44px; width: auto; display: block"
+            />
+          </div>
+          <div
+            style="
+              font-family: &quot;IBM Plex Mono&quot;, monospace;
+              font-size: 12px;
+              display: flex;
+              gap: 8px;
+            "
+          >
+            <span data-lang-btn="ru" style="cursor: pointer; color: #111"
+              >ru</span
+            >
+            <span style="color: #888">/</span>
+            <span data-lang-btn="kz" style="cursor: pointer; color: #888"
+              >kz</span
+            >
+          </div>
+        </header>
+
+        <div style="height: 1px; background: #e5e5e5; width: 100%"></div>
+
+        <!-- HERO -->
+        <section
+          style="max-width: 1200px; margin: 0 auto; padding: 140px 24px 120px"
+        >
+          <div
+            data-i18n="heroKicker"
+            style="
+              font-family: &quot;IBM Plex Mono&quot;, monospace;
+              font-size: 12px;
+              letter-spacing: 0.03em;
+              color: #002c5f;
+              text-transform: lowercase;
+              margin-bottom: 28px;
+            "
+          >
+            персональное предложение — для hyundai auto kazakhstan
+          </div>
+          <h1
+            data-i18n="heroTitle"
+            style="
+              font-size: clamp(40px, 7vw, 96px);
+              font-weight: 900;
+              letter-spacing: -0.03em;
+              line-height: 1.02;
+              margin: 0 0 32px;
+            "
+          >
+            Hyundai <span style="color: #002c5f">×</span> Madeniet
+          </h1>
+          <p
+            data-i18n="heroSub"
+            style="
+              font-size: clamp(18px, 2vw, 24px);
+              font-weight: 500;
+              color: #111;
+              max-width: 760px;
+              margin: 0 0 20px;
+              line-height: 1.4;
+            "
+          >
+            Партнёрство в первом печатном номере журнала о современной культуре
+            Казахстана. Сентябрь 2026, совместно с Alem Comedy Fest.
+          </p>
+          <div style="overflow: hidden; width: 100%; margin-bottom: 48px">
+            <div
+              style="
+                display: flex;
+                width: max-content;
+                white-space: nowrap;
+                animation: ticker 30s linear infinite;
+              "
+            >
+              <span
+                data-i18n="ticker"
+                style="
+                  font-family: &quot;IBM Plex Mono&quot;, monospace;
+                  font-size: 12px;
+                  letter-spacing: 0.02em;
+                  color: #888;
+                  text-transform: lowercase;
+                  padding-right: 24px;
+                "
+                >прогресс / культура / кино / музыка / мода / стендап / архивы /
+                прогресс / культура / кино / музыка / мода / стендап / архивы
+                /</span
+              >
+              <span
+                data-i18n="ticker"
+                style="
+                  font-family: &quot;IBM Plex Mono&quot;, monospace;
+                  font-size: 12px;
+                  letter-spacing: 0.02em;
+                  color: #888;
+                  text-transform: lowercase;
+                  padding-right: 24px;
+                "
+                >прогресс / культура / кино / музыка / мода / стендап / архивы /
+                прогресс / культура / кино / музыка / мода / стендап / архивы
+                /</span
+              >
+            </div>
+          </div>
+          <div style="display: flex; gap: 16px; flex-wrap: wrap">
+            <a
+              data-i18n="btnOffer"
+              href="#offer"
+              style="
+                font-family: &quot;IBM Plex Mono&quot;, monospace;
+                font-size: 13px;
+                color: #fff;
+                background: #002c5f;
+                text-decoration: none;
+                border: 1px solid #002c5f;
+                padding: 14px 22px;
+                display: inline-block;
+                transition:
+                  background 0.15s,
+                  color 0.15s;
+              "
+              style-hover="background:#fff; color:#002C5F;"
+            >
+              Что мы предлагаем
+            </a>
+            <a
+              data-i18n="btnContact"
+              href="#contacts"
+              style="
+                font-family: &quot;IBM Plex Mono&quot;, monospace;
+                font-size: 13px;
+                color: #888;
+                text-decoration: none;
+                border: 1px solid #e5e5e5;
+                padding: 14px 22px;
+                display: inline-block;
+                transition:
+                  border-color 0.15s,
+                  color 0.15s;
+              "
+              style-hover="border-color:#111; color:#111;"
+            >
+              Обсудить
+            </a>
+          </div>
+        </section>
+
+        <!-- WHY YOU — BLUE BLOCK -->
+        <section id="why" style="background: #002c5f; color: #fff">
+          <div style="max-width: 1200px; margin: 0 auto; padding: 120px 24px">
+            <h2
+              data-i18n="whyTitle"
+              style="
+                font-size: clamp(28px, 4vw, 44px);
+                font-weight: 800;
+                letter-spacing: -0.02em;
+                margin: 0 0 24px;
+              "
+            >
+              Почему мы пишем именно вам —
+            </h2>
+            <p
+              data-i18n="whyIntro"
+              style="
+                font-size: 20px;
+                line-height: 1.55;
+                max-width: 760px;
+                margin: 0 0 72px;
+                color: rgba(255, 255, 255, 0.85);
+              "
+            >
+              Это не рассылка по всем брендам страны. Мы посмотрели, что Hyundai
+              делает в культуре — глобально и в Казахстане — и увидели партнёра,
+              с которым совпадаем по смыслу.
+            </p>
+
+            <div style="display: flex; flex-direction: column">
+              <div
+                style="
+                  display: grid;
+                  grid-template-columns: 80px 1fr;
+                  gap: 24px;
+                  padding: 40px 0;
+                  border-top: 1px solid rgba(255, 255, 255, 0.2);
+                "
+              >
+                <div
+                  style="
+                    font-family: &quot;IBM Plex Mono&quot;, monospace;
+                    font-size: 14px;
+                    color: rgba(255, 255, 255, 0.5);
+                  "
+                >
+                  01
+                </div>
+                <div>
+                  <div
+                    data-i18n="why1t"
+                    style="
+                      font-weight: 700;
+                      font-size: 22px;
+                      margin-bottom: 10px;
+                    "
+                  >
+                    Hyundai давно в культуре — глобально
+                  </div>
+                  <div
+                    data-i18n="why1d"
+                    style="
+                      font-size: 17px;
+                      line-height: 1.55;
+                      max-width: 680px;
+                      color: rgba(255, 255, 255, 0.85);
+                    "
+                  >
+                    Долгосрочные партнёрства с Tate Modern, LACMA и музеем MMCA,
+                    титульное партнёрство биеннале в Сиднее. Свободный доступ к
+                    искусству — часть стратегии бренда, а не разовая акция.
+                  </div>
+                </div>
+              </div>
+              <div
+                style="
+                  display: grid;
+                  grid-template-columns: 80px 1fr;
+                  gap: 24px;
+                  padding: 40px 0;
+                  border-top: 1px solid rgba(255, 255, 255, 0.2);
+                "
+              >
+                <div
+                  style="
+                    font-family: &quot;IBM Plex Mono&quot;, monospace;
+                    font-size: 14px;
+                    color: rgba(255, 255, 255, 0.5);
+                  "
+                >
+                  02
+                </div>
+                <div>
+                  <div
+                    data-i18n="why2t"
+                    style="
+                      font-weight: 700;
+                      font-size: 22px;
+                      margin-bottom: 10px;
+                    "
+                  >
+                    И уже спонсируете культуру здесь
+                  </div>
+                  <div
+                    data-i18n="why2d"
+                    style="
+                      font-size: 17px;
+                      line-height: 1.55;
+                      max-width: 680px;
+                      color: rgba(255, 255, 255, 0.85);
+                    "
+                  >
+                    Арт-кар Hyundai × OYU на Oyu Fest. Три автомобиля
+                    алматинской сборки — победителям байги на Всемирных играх
+                    кочевников 2024. Подарки призёрам Олимпиады. Мы видим в этом
+                    не разовые жесты, а последовательную линию — и предлагаем её
+                    продолжение.
+                  </div>
+                </div>
+              </div>
+              <div
+                style="
+                  display: grid;
+                  grid-template-columns: 80px 1fr;
+                  gap: 24px;
+                  padding: 40px 0;
+                  border-top: 1px solid rgba(255, 255, 255, 0.2);
+                "
+              >
+                <div
+                  style="
+                    font-family: &quot;IBM Plex Mono&quot;, monospace;
+                    font-size: 14px;
+                    color: rgba(255, 255, 255, 0.5);
+                  "
+                >
+                  03
+                </div>
+                <div>
+                  <div
+                    data-i18n="why3t"
+                    style="
+                      font-weight: 700;
+                      font-size: 22px;
+                      margin-bottom: 10px;
+                    "
+                  >
+                    Социальная ответственность — на практике
+                  </div>
+                  <div
+                    data-i18n="why3d"
+                    style="
+                      font-size: 17px;
+                      line-height: 1.55;
+                      max-width: 680px;
+                      color: rgba(255, 255, 255, 0.85);
+                    "
+                  >
+                    Завод полного цикла в Алматы, образовательная лаборатория
+                    Hyundai Engineering Lab в Satbayev University, поддержка
+                    молодых лидеров на форуме Gen.T. Вы вкладываетесь в людей и
+                    города, а не только в продажи.
+                  </div>
+                </div>
+              </div>
+              <div
+                style="
+                  display: grid;
+                  grid-template-columns: 80px 1fr;
+                  gap: 24px;
+                  padding: 40px 0;
+                  border-top: 1px solid rgba(255, 255, 255, 0.2);
+                  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+                "
+              >
+                <div
+                  style="
+                    font-family: &quot;IBM Plex Mono&quot;, monospace;
+                    font-size: 14px;
+                    color: rgba(255, 255, 255, 0.5);
+                  "
+                >
+                  04
+                </div>
+                <div>
+                  <div
+                    data-i18n="why4t"
+                    style="
+                      font-weight: 700;
+                      font-size: 22px;
+                      margin-bottom: 10px;
+                    "
+                  >
+                    Мы говорим с одной страной на двух языках
+                  </div>
+                  <div
+                    data-i18n="why4d"
+                    style="
+                      font-size: 17px;
+                      line-height: 1.55;
+                      max-width: 680px;
+                      color: rgba(255, 255, 255, 0.85);
+                    "
+                  >
+                    «Прогресс во имя человечества» звучит у вас на русском и
+                    казахском. Madeniet — медиа на двух языках, без деления
+                    аудитории на «свою» и «чужую». Мы обращаемся к тем же людям
+                    теми же словами.
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div
+              style="
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+                gap: 24px;
+                margin-top: 72px;
+              "
+            >
+              <div>
+                <div
+                  style="
+                    background: rgba(255, 255, 255, 0.08);
+                    aspect-ratio: 4/5;
+                    overflow: hidden;
+                  "
+                >
+                  <img
+                    src="uploads/pasted-1783320194696-0.png"
+                    alt="Hyundai × OYU art car"
+                    style="
+                      width: 100%;
+                      height: 100%;
+                      object-fit: cover;
+                      display: block;
+                    "
+                  />
+                </div>
+                <div
+                  data-i18n="g1"
+                  style="
+                    font-family: &quot;IBM Plex Mono&quot;, monospace;
+                    font-size: 12px;
+                    color: rgba(255, 255, 255, 0.6);
+                    text-transform: lowercase;
+                    margin-top: 14px;
+                  "
+                >
+                  hyundai × oyu fest — арт-кар
+                </div>
+              </div>
+              <div>
+                <div
+                  style="
+                    background: rgba(255, 255, 255, 0.08);
+                    aspect-ratio: 4/5;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    padding: 24px;
+                    text-align: center;
+                  "
+                >
+                  <span
+                    data-i18n="g2ph"
+                    style="
+                      font-family: &quot;IBM Plex Mono&quot;, monospace;
+                      font-size: 12px;
+                      color: rgba(255, 255, 255, 0.5);
+                      text-transform: lowercase;
+                    "
+                    >photo — вручение hyundai победителям байги</span
+                  >
+                </div>
+                <div
+                  data-i18n="g2"
+                  style="
+                    font-family: &quot;IBM Plex Mono&quot;, monospace;
+                    font-size: 12px;
+                    color: rgba(255, 255, 255, 0.6);
+                    text-transform: lowercase;
+                    margin-top: 14px;
+                  "
+                >
+                  всемирные игры кочевников — 2024
+                </div>
+              </div>
+              <div>
+                <div
+                  style="
+                    background: rgba(255, 255, 255, 0.08);
+                    aspect-ratio: 4/5;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    padding: 24px;
+                    text-align: center;
+                  "
+                >
+                  <span
+                    data-i18n="g3ph"
+                    style="
+                      font-family: &quot;IBM Plex Mono&quot;, monospace;
+                      font-size: 12px;
+                      color: rgba(255, 255, 255, 0.5);
+                      text-transform: lowercase;
+                    "
+                    >photo — engineering lab / gen.t</span
+                  >
+                </div>
+                <div
+                  data-i18n="g3"
+                  style="
+                    font-family: &quot;IBM Plex Mono&quot;, monospace;
+                    font-size: 12px;
+                    color: rgba(255, 255, 255, 0.6);
+                    text-transform: lowercase;
+                    margin-top: 14px;
+                  "
+                >
+                  образование и молодые лидеры
+                </div>
+              </div>
+            </div>
+
+            <p
+              data-i18n="whyOutro"
+              style="
+                font-size: clamp(22px, 2.6vw, 30px);
+                font-weight: 700;
+                line-height: 1.4;
+                max-width: 820px;
+                margin: 72px 0 0;
+                letter-spacing: -0.01em;
+              "
+            >
+              Глобальный Hyundai — партнёр Tate и LACMA. Hyundai в Казахстане
+              может стать партнёром казахской культуры — начиная с первого
+              печатного номера Madeniet.
+            </p>
+          </div>
+        </section>
+
+        <!-- ROUTES — THE BIG IDEA -->
+        <section
+          id="routes"
+          style="max-width: 1200px; margin: 0 auto; padding: 120px 24px"
+        >
+          <div
+            data-i18n="routesKicker"
+            style="
+              font-family: &quot;IBM Plex Mono&quot;, monospace;
+              font-size: 12px;
+              letter-spacing: 0.03em;
+              color: #002c5f;
+              text-transform: lowercase;
+              margin-bottom: 28px;
+            "
+          >
+            наша главная идея для вас — спецпроект в номере №1
+          </div>
+          <h2
+            data-i18n="routesTitle"
+            style="
+              font-size: clamp(32px, 5vw, 64px);
+              font-weight: 900;
+              letter-spacing: -0.03em;
+              line-height: 1.05;
+              margin: 0 0 32px;
+            "
+          >
+            Движение сквозь культуру
+          </h2>
+          <div style="max-width: 760px; margin-bottom: 72px">
+            <p
+              data-i18n="routesP1"
+              style="font-size: 20px; line-height: 1.55; margin: 0 0 20px"
+            >
+              В Казахстане автомобиль — это доступ к собственной культуре. До
+              Тамгалы, Бозжыры и Туркестана не ходит метро: наследие страны
+              лежит вдоль дорог, и добраться до него можно только за рулём.
+            </p>
+            <p
+              data-i18n="routesP2"
+              style="font-size: 20px; line-height: 1.55; margin: 0 0 20px"
+            >
+              Мы предлагаем фотопроект <strong>«Маршруты вдохновения»</strong>:
+              один Hyundai алматинской сборки, шесть мест силы, за рулём — герои
+              номера. Машина в кадре — герой истории, а не фон.
+            </p>
+            <p
+              data-i18n="routesP3"
+              style="font-size: 20px; line-height: 1.55; margin: 0"
+            >
+              Результат — фотоистория на разворотах печатного номера и серия в
+              наших соцсетях с охватом 2,85 млн просмотров в месяц.
+            </p>
+          </div>
+
+          <div
+            style="
+              display: grid;
+              grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+              gap: 24px;
+            "
+          >
+            <div>
+              <div
+                style="
+                  background: #f2f2f2;
+                  aspect-ratio: 4/5;
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                "
+              >
+                <span
+                  data-i18n="routePhoto"
+                  style="
+                    font-family: &quot;IBM Plex Mono&quot;, monospace;
+                    font-size: 12px;
+                    color: #888;
+                    text-transform: lowercase;
+                  "
+                  >photo — маршрут</span
+                >
+              </div>
+              <div
+                style="
+                  font-family: &quot;IBM Plex Mono&quot;, monospace;
+                  font-size: 12px;
+                  color: #002c5f;
+                  margin: 16px 0 6px;
+                "
+              >
+                01
+              </div>
+              <div
+                data-i18n="r1t"
+                style="font-weight: 700; font-size: 20px; margin-bottom: 6px"
+              >
+                Туркестан
+              </div>
+              <div
+                data-i18n="r1d"
+                style="font-size: 15px; color: #888; line-height: 1.45"
+              >
+                мавзолей Ходжи Ахмеда Ясауи, духовная столица
+              </div>
+            </div>
+            <div>
+              <div
+                style="
+                  background: #f2f2f2;
+                  aspect-ratio: 4/5;
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                "
+              >
+                <span
+                  data-i18n="routePhoto"
+                  style="
+                    font-family: &quot;IBM Plex Mono&quot;, monospace;
+                    font-size: 12px;
+                    color: #888;
+                    text-transform: lowercase;
+                  "
+                  >photo — маршрут</span
+                >
+              </div>
+              <div
+                style="
+                  font-family: &quot;IBM Plex Mono&quot;, monospace;
+                  font-size: 12px;
+                  color: #002c5f;
+                  margin: 16px 0 6px;
+                "
+              >
+                02
+              </div>
+              <div
+                data-i18n="r2t"
+                style="font-weight: 700; font-size: 20px; margin-bottom: 6px"
+              >
+                Тамгалы
+              </div>
+              <div
+                data-i18n="r2d"
+                style="font-size: 15px; color: #888; line-height: 1.45"
+              >
+                петроглифы под охраной ЮНЕСКО
+              </div>
+            </div>
+            <div>
+              <div
+                style="
+                  background: #f2f2f2;
+                  aspect-ratio: 4/5;
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                "
+              >
+                <span
+                  data-i18n="routePhoto"
+                  style="
+                    font-family: &quot;IBM Plex Mono&quot;, monospace;
+                    font-size: 12px;
+                    color: #888;
+                    text-transform: lowercase;
+                  "
+                  >photo — маршрут</span
+                >
+              </div>
+              <div
+                style="
+                  font-family: &quot;IBM Plex Mono&quot;, monospace;
+                  font-size: 12px;
+                  color: #002c5f;
+                  margin: 16px 0 6px;
+                "
+              >
+                03
+              </div>
+              <div
+                data-i18n="r3t"
+                style="font-weight: 700; font-size: 20px; margin-bottom: 6px"
+              >
+                Чарын
+              </div>
+              <div
+                data-i18n="r3d"
+                style="font-size: 15px; color: #888; line-height: 1.45"
+              >
+                каньон в трёх часах от Алматы
+              </div>
+            </div>
+            <div>
+              <div
+                style="
+                  background: #f2f2f2;
+                  aspect-ratio: 4/5;
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                "
+              >
+                <span
+                  data-i18n="routePhoto"
+                  style="
+                    font-family: &quot;IBM Plex Mono&quot;, monospace;
+                    font-size: 12px;
+                    color: #888;
+                    text-transform: lowercase;
+                  "
+                  >photo — маршрут</span
+                >
+              </div>
+              <div
+                style="
+                  font-family: &quot;IBM Plex Mono&quot;, monospace;
+                  font-size: 12px;
+                  color: #002c5f;
+                  margin: 16px 0 6px;
+                "
+              >
+                04
+              </div>
+              <div
+                data-i18n="r4t"
+                style="font-weight: 700; font-size: 20px; margin-bottom: 6px"
+              >
+                Кольсай
+              </div>
+              <div
+                data-i18n="r4d"
+                style="font-size: 15px; color: #888; line-height: 1.45"
+              >
+                горные озёра Тянь-Шаня
+              </div>
+            </div>
+            <div>
+              <div
+                style="
+                  background: #f2f2f2;
+                  aspect-ratio: 4/5;
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                "
+              >
+                <span
+                  data-i18n="routePhoto"
+                  style="
+                    font-family: &quot;IBM Plex Mono&quot;, monospace;
+                    font-size: 12px;
+                    color: #888;
+                    text-transform: lowercase;
+                  "
+                  >photo — маршрут</span
+                >
+              </div>
+              <div
+                style="
+                  font-family: &quot;IBM Plex Mono&quot;, monospace;
+                  font-size: 12px;
+                  color: #002c5f;
+                  margin: 16px 0 6px;
+                "
+              >
+                05
+              </div>
+              <div
+                data-i18n="r5t"
+                style="font-weight: 700; font-size: 20px; margin-bottom: 6px"
+              >
+                Мангистау
+              </div>
+              <div
+                data-i18n="r5d"
+                style="font-size: 15px; color: #888; line-height: 1.45"
+              >
+                Бозжыра и меловые горы
+              </div>
+            </div>
+            <div>
+              <div
+                style="
+                  background: #f2f2f2;
+                  aspect-ratio: 4/5;
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                "
+              >
+                <span
+                  data-i18n="routePhoto"
+                  style="
+                    font-family: &quot;IBM Plex Mono&quot;, monospace;
+                    font-size: 12px;
+                    color: #888;
+                    text-transform: lowercase;
+                  "
+                  >photo — маршрут</span
+                >
+              </div>
+              <div
+                style="
+                  font-family: &quot;IBM Plex Mono&quot;, monospace;
+                  font-size: 12px;
+                  color: #002c5f;
+                  margin: 16px 0 6px;
+                "
+              >
+                06
+              </div>
+              <div
+                data-i18n="r6t"
+                style="font-weight: 700; font-size: 20px; margin-bottom: 6px"
+              >
+                Улытау
+              </div>
+              <div
+                data-i18n="r6d"
+                style="font-size: 15px; color: #888; line-height: 1.45"
+              >
+                сердце Великой степи
+              </div>
+            </div>
+          </div>
+
+          <div
+            data-i18n="routesNote"
+            style="
+              font-family: &quot;IBM Plex Mono&quot;, monospace;
+              font-size: 12px;
+              color: #888;
+              text-transform: lowercase;
+              margin-top: 32px;
+            "
+          >
+            это стартовая подборка — финальные маршруты соберём вместе с вашей
+            командой
+          </div>
+        </section>
+
+        <div style="height: 1px; background: #e5e5e5; width: 100%"></div>
+
+        <!-- WHO WE ARE -->
+        <section style="max-width: 1200px; margin: 0 auto; padding: 120px 24px">
+          <h2
+            data-i18n="whoTitle"
+            style="
+              font-size: clamp(28px, 4vw, 44px);
+              font-weight: 800;
+              letter-spacing: -0.02em;
+              margin: 0 0 40px;
+            "
+          >
+            Кто мы —
+          </h2>
+          <div style="max-width: 760px; margin-bottom: 80px">
+            <p
+              data-i18n="whoP1"
+              style="font-size: 20px; line-height: 1.55; margin: 0 0 20px"
+            >
+              Madeniet — медиа о современной культуре Казахстана. Пишем о кино,
+              музыке, моде, стендапе и наследии на русском и казахском. Мы
+              делаем отечественную культуру визуально стильной и понятной — и
+              сейчас переносим этот подход в печать.
+            </p>
+            <div
+              data-i18n="whoFounder"
+              style="
+                font-family: &quot;IBM Plex Mono&quot;, monospace;
+                font-size: 13px;
+                color: #111;
+                margin-bottom: 16px;
+              "
+            >
+              основатель журнала — режиссёр Куаныш Бейсек
+            </div>
+            <div
+              style="
+                font-family: &quot;IBM Plex Mono&quot;, monospace;
+                font-size: 13px;
+              "
+            >
+              <a
+                data-i18n="whoLink"
+                href="https://madeniet.com/"
+                target="_blank"
+                style="color: #002c5f; text-decoration: none"
+                style-hover="text-decoration:underline;"
+                >→ посмотреть, как мы пишем: madeniet.com</a
+              >
+            </div>
+          </div>
+
+          <div
+            data-i18n="numNote"
+            style="
+              font-family: &quot;IBM Plex Mono&quot;, monospace;
+              font-size: 12px;
+              color: #888;
+              text-transform: lowercase;
+              margin-bottom: 48px;
+            "
+          >
+            instagram insights, 4 июня – 4 июля 2026. чистая органика, без
+            таргета.
+          </div>
+          <div
+            ref="{{ statsRef }}"
+            style="
+              display: grid;
+              grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
+              gap: 72px 48px;
+              align-items: end;
+            "
+          >
+            <div>
+              <div
+                style="
+                  font-family: &quot;IBM Plex Mono&quot;, monospace;
+                  font-weight: 600;
+                  font-size: clamp(48px, 7.5vw, 110px);
+                  line-height: 0.95;
+                  letter-spacing: -0.02em;
+                  white-space: nowrap;
+                "
+                data-stat="2.85|m"
+              >
+                2,85 млн
+              </div>
+              <div
+                data-i18n="statL1"
+                style="
+                  font-family: &quot;IBM Plex Mono&quot;, monospace;
+                  font-size: 12px;
+                  color: #888;
+                  text-transform: lowercase;
+                  margin-top: 12px;
+                "
+              >
+                просмотров за 30 дней
+              </div>
+            </div>
+            <div>
+              <div
+                style="
+                  font-family: &quot;IBM Plex Mono&quot;, monospace;
+                  font-weight: 600;
+                  font-size: clamp(48px, 7.5vw, 110px);
+                  line-height: 0.95;
+                  letter-spacing: -0.02em;
+                  white-space: nowrap;
+                "
+                data-stat="1.27|m"
+              >
+                1,27 млн
+              </div>
+              <div
+                data-i18n="statL2"
+                style="
+                  font-family: &quot;IBM Plex Mono&quot;, monospace;
+                  font-size: 12px;
+                  color: #888;
+                  text-transform: lowercase;
+                  margin-top: 12px;
+                "
+              >
+                охваченных аккаунтов
+              </div>
+            </div>
+            <div>
+              <div
+                style="
+                  font-family: &quot;IBM Plex Mono&quot;, monospace;
+                  font-weight: 600;
+                  font-size: clamp(48px, 7.5vw, 110px);
+                  line-height: 0.95;
+                  letter-spacing: -0.02em;
+                  white-space: nowrap;
+                "
+                data-stat="98|%"
+              >
+                98%
+              </div>
+              <div
+                data-i18n="statL3"
+                style="
+                  font-family: &quot;IBM Plex Mono&quot;, monospace;
+                  font-size: 12px;
+                  color: #888;
+                  text-transform: lowercase;
+                  margin-top: 12px;
+                "
+              >
+                органический трафик
+              </div>
+            </div>
+            <div>
+              <div
+                style="
+                  font-family: &quot;IBM Plex Mono&quot;, monospace;
+                  font-weight: 600;
+                  font-size: clamp(48px, 7.5vw, 110px);
+                  line-height: 0.95;
+                  letter-spacing: -0.02em;
+                  white-space: nowrap;
+                "
+                data-stat="74|%"
+              >
+                74%
+              </div>
+              <div
+                data-i18n="statL4"
+                style="
+                  font-family: &quot;IBM Plex Mono&quot;, monospace;
+                  font-size: 12px;
+                  color: #888;
+                  text-transform: lowercase;
+                  margin-top: 12px;
+                "
+              >
+                просмотров — новая аудитория
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <div style="height: 1px; background: #e5e5e5; width: 100%"></div>
+
+        <!-- THE ISSUE -->
+        <section style="max-width: 1200px; margin: 0 auto; padding: 120px 24px">
+          <h2
+            data-i18n="issueTitle"
+            style="
+              font-size: clamp(28px, 4vw, 44px);
+              font-weight: 800;
+              letter-spacing: -0.02em;
+              margin: 0 0 24px;
+            "
+          >
+            Номер, в который мы вас зовём —
+          </h2>
+          <p
+            data-i18n="issueIntro"
+            style="
+              font-size: 20px;
+              line-height: 1.55;
+              max-width: 760px;
+              margin: 0 0 64px;
+            "
+          >
+            Первый печатный выпуск Madeniet. Двойная обложка с Alem Comedy Fest
+            — главным комедийным фестивалем страны. Журнал будет представлен на
+            площадках феста и в городской дистрибуции.
+          </p>
+
+          <div
+            style="
+              display: grid;
+              grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+              gap: 48px;
+              margin-bottom: 64px;
+            "
+          >
+            <div>
+              <div
+                data-i18n="isL1"
+                style="
+                  font-family: &quot;IBM Plex Mono&quot;, monospace;
+                  font-size: 12px;
+                  color: #888;
+                  text-transform: lowercase;
+                  margin-bottom: 14px;
+                "
+              >
+                выход
+              </div>
+              <div
+                data-i18n="isV1"
+                style="
+                  font-size: 32px;
+                  font-weight: 700;
+                  letter-spacing: -0.02em;
+                "
+              >
+                сентябрь 2026
+              </div>
+            </div>
+            <div>
+              <div
+                data-i18n="isL2"
+                style="
+                  font-family: &quot;IBM Plex Mono&quot;, monospace;
+                  font-size: 12px;
+                  color: #888;
+                  text-transform: lowercase;
+                  margin-bottom: 14px;
+                "
+              >
+                обложка
+              </div>
+              <div
+                data-i18n="isV2"
+                style="
+                  font-size: 32px;
+                  font-weight: 700;
+                  letter-spacing: -0.02em;
+                "
+              >
+                двойная, × Alem Comedy Fest
+              </div>
+            </div>
+            <div>
+              <div
+                data-i18n="isL3"
+                style="
+                  font-family: &quot;IBM Plex Mono&quot;, monospace;
+                  font-size: 12px;
+                  color: #888;
+                  text-transform: lowercase;
+                  margin-bottom: 14px;
+                "
+              >
+                внутри
+              </div>
+              <div
+                data-i18n="isV3"
+                style="
+                  font-size: 32px;
+                  font-weight: 700;
+                  letter-spacing: -0.02em;
+                "
+              >
+                5+ больших материалов
+              </div>
+            </div>
+          </div>
+
+          <div
+            style="display: flex; flex-direction: column; margin-bottom: 64px"
+          >
+            <div
+              style="
+                display: grid;
+                grid-template-columns: 80px 1fr;
+                gap: 24px;
+                padding: 32px 0;
+                border-top: 1px solid #e5e5e5;
+              "
+            >
+              <div
+                style="
+                  font-family: &quot;IBM Plex Mono&quot;, monospace;
+                  font-size: 14px;
+                  color: #002c5f;
+                "
+              >
+                01
+              </div>
+              <div>
+                <div
+                  data-i18n="c1t"
+                  style="font-weight: 700; font-size: 22px; margin-bottom: 10px"
+                >
+                  Димаш Кудайберген
+                </div>
+                <div
+                  data-i18n="c1d"
+                  style="
+                    font-size: 17px;
+                    color: #111;
+                    line-height: 1.5;
+                    max-width: 640px;
+                  "
+                >
+                  Большое интервью с самым известным голосом страны.
+                </div>
+              </div>
+            </div>
+            <div
+              style="
+                display: grid;
+                grid-template-columns: 80px 1fr;
+                gap: 24px;
+                padding: 32px 0;
+                border-top: 1px solid #e5e5e5;
+              "
+            >
+              <div
+                style="
+                  font-family: &quot;IBM Plex Mono&quot;, monospace;
+                  font-size: 14px;
+                  color: #002c5f;
+                "
+              >
+                02
+              </div>
+              <div>
+                <div
+                  data-i18n="c2t"
+                  style="font-weight: 700; font-size: 22px; margin-bottom: 10px"
+                >
+                  «7 қарақшы» — премьера
+                </div>
+                <div
+                  data-i18n="c2d"
+                  style="
+                    font-size: 17px;
+                    color: #111;
+                    line-height: 1.5;
+                    max-width: 640px;
+                  "
+                >
+                  Материал о фильме Куаныша Бейсека «7 қарақшы» и людях, которые
+                  его сделали.
+                </div>
+              </div>
+            </div>
+            <div
+              style="
+                display: grid;
+                grid-template-columns: 80px 1fr;
+                gap: 24px;
+                padding: 32px 0;
+                border-top: 1px solid #e5e5e5;
+              "
+            >
+              <div
+                style="
+                  font-family: &quot;IBM Plex Mono&quot;, monospace;
+                  font-size: 14px;
+                  color: #002c5f;
+                "
+              >
+                03
+              </div>
+              <div>
+                <div
+                  data-i18n="c3t"
+                  style="font-weight: 700; font-size: 22px; margin-bottom: 10px"
+                >
+                  Архивы: Шакен Айманов
+                </div>
+                <div
+                  data-i18n="c3d"
+                  style="
+                    font-size: 17px;
+                    color: #111;
+                    line-height: 1.5;
+                    max-width: 640px;
+                  "
+                >
+                  Наша самая читаемая рубрика — история и наследие Казахстана —
+                  впервые на бумаге. Центральный материал — о Шакене Айманове,
+                  отце казахского кино.
+                </div>
+              </div>
+            </div>
+            <div
+              style="
+                display: grid;
+                grid-template-columns: 80px 1fr;
+                gap: 24px;
+                padding: 32px 0;
+                border-top: 1px solid #e5e5e5;
+              "
+            >
+              <div
+                style="
+                  font-family: &quot;IBM Plex Mono&quot;, monospace;
+                  font-size: 14px;
+                  color: #002c5f;
+                "
+              >
+                04
+              </div>
+              <div>
+                <div
+                  data-i18n="c4t"
+                  style="font-weight: 700; font-size: 22px; margin-bottom: 10px"
+                >
+                  Двойная обложка × Alem Comedy Fest
+                </div>
+                <div
+                  data-i18n="c4d"
+                  style="
+                    font-size: 17px;
+                    color: #111;
+                    line-height: 1.5;
+                    max-width: 640px;
+                  "
+                >
+                  Комедия как новая казахская культура: герои феста, закулисье,
+                  большой разговор о жанре.
+                </div>
+              </div>
+            </div>
+            <div
+              style="
+                display: grid;
+                grid-template-columns: 80px 1fr;
+                gap: 24px;
+                padding: 32px 0;
+                border-top: 1px solid #e5e5e5;
+                border-bottom: 1px solid #e5e5e5;
+              "
+            >
+              <div
+                style="
+                  font-family: &quot;IBM Plex Mono&quot;, monospace;
+                  font-size: 14px;
+                  color: #002c5f;
+                "
+              >
+                05
+              </div>
+              <div>
+                <div
+                  data-i18n="c5t"
+                  style="font-weight: 700; font-size: 22px; margin-bottom: 10px"
+                >
+                  Культура через 50 лет
+                </div>
+                <div
+                  data-i18n="c5d"
+                  style="
+                    font-size: 17px;
+                    color: #111;
+                    line-height: 1.5;
+                    max-width: 640px;
+                  "
+                >
+                  20 героев — режиссёры, музыканты, художники — о том, какой они
+                  видят казахскую культуру в 2076 году.
+                </div>
+              </div>
+            </div>
+            <div
+              data-i18n="cMore"
+              style="
+                font-family: &quot;IBM Plex Mono&quot;, monospace;
+                font-size: 13px;
+                color: #888;
+                text-transform: lowercase;
+                margin-top: 24px;
+              "
+            >
+              …и многое другое — полный состав номера покажем при встрече
+            </div>
+          </div>
+
+          <div
+            style="
+              background: #f2f2f2;
+              width: 100%;
+              aspect-ratio: 16/8;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+            "
+          >
+            <span
+              data-i18n="issuePhoto"
+              style="
+                font-family: &quot;IBM Plex Mono&quot;, monospace;
+                font-size: 12px;
+                color: #888;
+                text-transform: lowercase;
+              "
+              >photo — макет обложки №1</span
+            >
+          </div>
+        </section>
+
+        <div style="height: 1px; background: #e5e5e5; width: 100%"></div>
+
+        <!-- OFFER -->
+        <section
+          id="offer"
+          style="max-width: 1200px; margin: 0 auto; padding: 120px 24px"
+        >
+          <h2
+            data-i18n="offerTitle"
+            style="
+              font-size: clamp(28px, 4vw, 44px);
+              font-weight: 800;
+              letter-spacing: -0.02em;
+              margin: 0 0 24px;
+            "
+          >
+            Что мы предлагаем Hyundai —
+          </h2>
+          <p
+            data-i18n="offerIntro"
+            style="
+              font-size: 20px;
+              line-height: 1.55;
+              max-width: 760px;
+              margin: 0 0 64px;
+            "
+          >
+            Пять форматов — от одного разворота до титульного партнёрства. Это
+            конструктор: собираем пакет под ваши задачи, а не продаём полосы по
+            прайсу.
+          </p>
+
+          <div style="display: flex; flex-direction: column">
+            <div
+              style="
+                display: grid;
+                grid-template-columns: 80px 1fr;
+                gap: 24px;
+                padding: 40px 0;
+                border-top: 1px solid #e5e5e5;
+              "
+            >
+              <div
+                style="
+                  font-family: &quot;IBM Plex Mono&quot;, monospace;
+                  font-size: 14px;
+                  color: #002c5f;
+                "
+              >
+                01
+              </div>
+              <div>
+                <div
+                  data-i18n="of1t"
+                  style="font-weight: 700; font-size: 22px; margin-bottom: 10px"
+                >
+                  Титульное партнёрство выпуска
+                </div>
+                <div
+                  data-i18n="of1d"
+                  style="font-size: 17px; line-height: 1.55; max-width: 680px"
+                >
+                  «Выпуск №1 — при поддержке Hyundai». Присутствие на обложке, в
+                  выходных данных и во всех коммуникациях номера — в печати, в
+                  диджитале, на событиях.
+                </div>
+              </div>
+            </div>
+            <div
+              style="
+                display: grid;
+                grid-template-columns: 80px 1fr;
+                gap: 24px;
+                padding: 40px 0;
+                border-top: 1px solid #e5e5e5;
+              "
+            >
+              <div
+                style="
+                  font-family: &quot;IBM Plex Mono&quot;, monospace;
+                  font-size: 14px;
+                  color: #002c5f;
+                "
+              >
+                02
+              </div>
+              <div>
+                <div
+                  data-i18n="of2t"
+                  style="font-weight: 700; font-size: 22px; margin-bottom: 10px"
+                >
+                  Спецпроект «Маршруты вдохновения»
+                </div>
+                <div
+                  data-i18n="of2d"
+                  style="
+                    font-size: 17px;
+                    line-height: 1.55;
+                    max-width: 680px;
+                    margin-bottom: 16px;
+                  "
+                >
+                  Фотопроект с автомобилем Hyundai по местам силы Казахстана —
+                  идея, описанная выше. История про движение и культуру, не
+                  реклама.
+                </div>
+                <a
+                  data-i18n="ofLink"
+                  href="#routes"
+                  style="
+                    font-family: &quot;IBM Plex Mono&quot;, monospace;
+                    font-size: 13px;
+                    color: #002c5f;
+                    text-decoration: none;
+                  "
+                  style-hover="text-decoration:underline;"
+                  >→ смотреть идею целиком</a
+                >
+              </div>
+            </div>
+            <div
+              style="
+                display: grid;
+                grid-template-columns: 80px 1fr;
+                gap: 24px;
+                padding: 40px 0;
+                border-top: 1px solid #e5e5e5;
+              "
+            >
+              <div
+                style="
+                  font-family: &quot;IBM Plex Mono&quot;, monospace;
+                  font-size: 14px;
+                  color: #002c5f;
+                "
+              >
+                03
+              </div>
+              <div>
+                <div
+                  data-i18n="of3t"
+                  style="font-weight: 700; font-size: 22px; margin-bottom: 10px"
+                >
+                  Разворот в номере
+                </div>
+                <div
+                  data-i18n="of3d"
+                  style="font-size: 17px; line-height: 1.55; max-width: 680px"
+                >
+                  Рекламный разворот, который не стыдно оставить в журнале о
+                  культуре: дизайн делает наша редакция, в эстетике номера.
+                </div>
+              </div>
+            </div>
+            <div
+              style="
+                display: grid;
+                grid-template-columns: 80px 1fr;
+                gap: 24px;
+                padding: 40px 0;
+                border-top: 1px solid #e5e5e5;
+              "
+            >
+              <div
+                style="
+                  font-family: &quot;IBM Plex Mono&quot;, monospace;
+                  font-size: 14px;
+                  color: #002c5f;
+                "
+              >
+                04
+              </div>
+              <div>
+                <div
+                  data-i18n="of4t"
+                  style="font-weight: 700; font-size: 22px; margin-bottom: 10px"
+                >
+                  Партнёрство на событиях
+                </div>
+                <div
+                  data-i18n="of4d"
+                  style="font-size: 17px; line-height: 1.55; max-width: 680px"
+                >
+                  Присутствие бренда на презентации номера и площадках Alem
+                  Comedy Fest — там, где журнал впервые окажется в руках
+                  аудитории.
+                </div>
+              </div>
+            </div>
+            <div
+              style="
+                display: grid;
+                grid-template-columns: 80px 1fr;
+                gap: 24px;
+                padding: 40px 0;
+                border-top: 1px solid #e5e5e5;
+                border-bottom: 1px solid #e5e5e5;
+              "
+            >
+              <div
+                style="
+                  font-family: &quot;IBM Plex Mono&quot;, monospace;
+                  font-size: 14px;
+                  color: #002c5f;
+                "
+              >
+                05
+              </div>
+              <div>
+                <div
+                  data-i18n="of5t"
+                  style="font-weight: 700; font-size: 22px; margin-bottom: 10px"
+                >
+                  Диджитал-усиление
+                </div>
+                <div
+                  data-i18n="of5d"
+                  style="font-size: 17px; line-height: 1.55; max-width: 680px"
+                >
+                  Материалы спецпроекта выходят и в соцсетях Madeniet: 2,85 млн
+                  просмотров в месяц добавляются к печатному охвату.
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <p
+            data-i18n="offerOutro"
+            style="
+              font-size: 20px;
+              font-weight: 600;
+              line-height: 1.5;
+              max-width: 760px;
+              margin: 56px 0 0;
+            "
+          >
+            Бюджет и состав пакета обсудим на встрече — под ваши KPI и
+            календарь. Расскажите о задаче, предложим 2–3 варианта.
+          </p>
+        </section>
+
+        <div style="height: 1px; background: #e5e5e5; width: 100%"></div>
+
+        <!-- CONTACTS -->
+        <section
+          id="contacts"
+          style="max-width: 1200px; margin: 0 auto; padding: 120px 24px 160px"
+        >
+          <h2
+            data-i18n="contactTitle"
+            style="
+              font-size: clamp(28px, 4vw, 44px);
+              font-weight: 800;
+              letter-spacing: -0.02em;
+              margin: 0 0 24px;
+            "
+          >
+            Обсудить партнёрство —
+          </h2>
+          <p
+            data-i18n="meetP"
+            style="
+              font-size: 20px;
+              line-height: 1.55;
+              max-width: 760px;
+              margin: 0 0 64px;
+            "
+          >
+            Формат встречи — любой, какой удобен вам: приедем к вам в офис,
+            позовём к нам или созвонимся на 20 минут. Очень ждём.
+          </p>
+
+          <div
+            style="
+              display: grid;
+              grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+              gap: 48px;
+              margin-bottom: 64px;
+            "
+          >
+            <div>
+              <div
+                style="font-weight: 700; font-size: 22px; margin-bottom: 8px"
+              >
+                Ильляра
+              </div>
+              <div
+                style="
+                  font-family: &quot;IBM Plex Mono&quot;, monospace;
+                  font-size: 13px;
+                  color: #888;
+                  margin-bottom: 4px;
+                "
+              >
+                Head of PR &amp; Commercial
+              </div>
+              <div
+                style="
+                  font-family: &quot;IBM Plex Mono&quot;, monospace;
+                  font-size: 15px;
+                "
+              >
+                +7 777 199 02 09
+              </div>
+            </div>
+            <div>
+              <div
+                style="font-weight: 700; font-size: 22px; margin-bottom: 8px"
+              >
+                Адеми
+              </div>
+              <div
+                data-i18n="role2"
+                style="
+                  font-family: &quot;IBM Plex Mono&quot;, monospace;
+                  font-size: 13px;
+                  color: #888;
+                  margin-bottom: 4px;
+                "
+              >
+                ассистент
+              </div>
+              <div
+                style="
+                  font-family: &quot;IBM Plex Mono&quot;, monospace;
+                  font-size: 15px;
+                "
+              >
+                +7 775 018 20 08
+              </div>
+            </div>
+            <div>
+              <div
+                style="font-weight: 700; font-size: 22px; margin-bottom: 8px"
+              >
+                Telegram
+              </div>
+              <div
+                style="
+                  font-family: &quot;IBM Plex Mono&quot;, monospace;
+                  font-size: 15px;
+                "
+              >
+                @mediamadeniet
+              </div>
+            </div>
+            <div>
+              <div
+                style="font-weight: 700; font-size: 22px; margin-bottom: 8px"
+              >
+                Email
+              </div>
+              <div
+                style="
+                  font-family: &quot;IBM Plex Mono&quot;, monospace;
+                  font-size: 15px;
+                "
+              >
+                <a
+                  href="/cdn-cgi/l/email-protection"
+                  class="__cf_email__"
+                  data-cfemail="1a6e727f777b7e7f74737f6e6e5a7d777b737634797577"
+                  >[email&#160;protected]</a
+                >
+              </div>
+            </div>
+          </div>
+
+          <a
+            data-i18n="dlBtn"
+            href="#"
+            style="
+              font-family: &quot;IBM Plex Mono&quot;, monospace;
+              font-size: 14px;
+              color: #fff;
+              background: #002c5f;
+              text-decoration: none;
+              padding: 18px 28px;
+              display: inline-block;
+              transition:
+                background 0.15s,
+                color 0.15s,
+                box-shadow 0.15s;
+            "
+            style-hover="background:#fff; color:#002C5F; box-shadow:inset 0 0 0 1px #002C5F;"
+          >
+            Скачать медиакит (PDF)
+          </a>
+        </section>
+
+        <div style="height: 1px; background: #e5e5e5; width: 100%"></div>
+
+        <footer style="max-width: 1200px; margin: 0 auto; padding: 32px 24px">
+          <div
+            style="
+              font-family: &quot;IBM Plex Mono&quot;, monospace;
+              font-size: 12px;
+              color: #888;
+              text-transform: lowercase;
+            "
+          >
+            madeniet × hyundai · culture · kazakhstan · 2026
+          </div>
+        </footer>
+      </div>
+    </x-dc>
+    <script
+      data-cfasync="false"
+      src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"
+    ></script>
+    <script type="text/x-dc" data-dc-script>
+            class Component extends DCLogic {
+              statsRef = React.createRef();
+              played = false;
+              lang = 'ru';
+              ruCache = {};
+
+              KZ = {
+                wKicker: 'жеке ұсыныс — hyundai auto kazakhstan',
+                wTitle: 'Сәлеметсіз бе, Hyundai командасы!',
+                wText: 'Біз — Madeniet журналымыз. Ішінде — алғашқы баспа санымыздағы серіктестік туралы ұсыныс: неге біз онда Hyundai-дың орнын көреміз және сіздің брендіңіз үшін ойлап тапқан жобамыз.',
+                wBtn: 'Ұсынысты қарау →',
+                nav1: 'неге сіздер',
+                nav2: 'ұсыныс',
+                nav3: 'байланыс',
+                nav4: 'идея',
+                heroKicker: 'жеке ұсыныс — hyundai auto kazakhstan үшін',
+                heroSub: 'Қазақстанның заманауи мәдениеті туралы журналдың алғашқы баспа санындағы серіктестік. Қыркүйек 2026, Alem Comedy Fest-пен бірге.',
+                ticker: 'прогресс / мәдениет / кино / музыка / сән / стендап / архивтер / прогресс / мәдениет / кино / музыка / сән / стендап / архивтер /',
+                btnOffer: 'Біз не ұсынамыз',
+                btnContact: 'Талқылау',
+                whyTitle: 'Неге дәл сіздерге жазып отырмыз —',
+                whyIntro: 'Бұл елдегі барлық брендке жіберілген хат емес. Біз Hyundai-дың мәдениетте не істеп жатқанын қарадық — жаһандық деңгейде де, Қазақстанда да — және мағына жағынан сәйкес келетін серіктесті көрдік.',
+                why1t: 'Hyundai мәдениетте бұрыннан бар — жаһандық деңгейде',
+                why1d: 'Tate Modern, LACMA және MMCA музейімен ұзақмерзімді серіктестік, Сидней биенналесінің титулдық серіктестігі. Өнерге еркін қолжетімділік — бренд стратегиясының бөлігі, бір реттік акция емес.',
+                why2t: 'Және мұнда мәдениетті қазірдің өзінде қолдайсыздар',
+                why2d: 'Oyu Fest-тегі Hyundai × OYU арт-кары. 2024 жылғы Дүниежүзілік көшпенділер ойындарында бәйге жеңімпаздарына — Алматыда құрастырылған үш көлік. Олимпиада жүлдегерлеріне сыйлықтар. Біз мұны бір реттік қимыл емес, дәйекті бағыт деп көреміз — және оның жалғасын ұсынамыз.',
+                why3t: 'Әлеуметтік жауапкершілік — іс жүзінде',
+                why3d: 'Алматыдағы толық циклді зауыт, Satbayev University-дегі Hyundai Engineering Lab білім зертханасы, Gen.T форумындағы жас көшбасшыларды қолдау. Сіздер тек сатылымға емес, адамдар мен қалаларға инвестиция саласыздар.',
+                why4t: 'Біз бір елмен екі тілде сөйлесеміз',
+                why4d: '«Адамзат үшін прогресс» сіздерде орыс және қазақ тілдерінде айтылады. Madeniet — аудиторияны «өз» және «бөтен» деп бөлмейтін екі тілді медиа. Біз сол адамдарға сол сөздермен жүгінеміз.',
+                g1: 'hyundai × oyu fest — арт-кар',
+                g2ph: 'photo — бәйге жеңімпаздарына hyundai табыстау',
+                g2: 'дүниежүзілік көшпенділер ойындары — 2024',
+                g3ph: 'photo — engineering lab / gen.t',
+                g3: 'білім және жас көшбасшылар',
+                whyOutro: 'Жаһандық Hyundai — Tate пен LACMA серіктесі. Қазақстандағы Hyundai қазақ мәдениетінің серіктесі бола алады — Madeniet-тің алғашқы баспа санынан бастап.',
+                routesKicker: 'сіздерге арналған басты идеямыз — №1 сандағы спешл-жоба',
+                routesTitle: 'Мәдениет арқылы қозғалыс',
+                routesP1: 'Қазақстанда автомобиль — өз мәдениетіңе жетудің жолы. Тамғалыға, Бозжыраға және Түркістанға метро жүрмейді: елдің мұрасы жолдардың бойында жатыр, оған тек көлікпен жетуге болады.',
+                routesP2: 'Біз <strong>«Шабыт бағыттары»</strong> фотожобасын ұсынамыз: Алматыда құрастырылған бір Hyundai, алты киелі жер, рөлде — сан кейіпкерлері. Кадрдағы көлік — фон емес, тарихтың кейіпкері.',
+                routesP3: 'Нәтиже — баспа санының жайылмаларындағы фототарих және айына 2,85 млн қаралымы бар әлеуметтік желілердегі серия.',
+                routePhoto: 'photo — бағыт',
+                r1t: 'Түркістан', r1d: 'Қожа Ахмет Ясауи кесенесі, рухани астана',
+                r2t: 'Тамғалы', r2d: 'ЮНЕСКО қорғауындағы петроглифтер',
+                r3t: 'Шарын', r3d: 'Алматыдан үш сағаттық каньон',
+                r4t: 'Көлсай', r4d: 'Тянь-Шань тауларындағы көлдер',
+                r5t: 'Маңғыстау', r5d: 'Бозжыра мен бор таулары',
+                r6t: 'Ұлытау', r6d: 'Ұлы даланың жүрегі',
+                routesNote: 'бұл бастапқы іріктеме — соңғы бағыттарды сіздердің командамен бірге жинаймыз',
+                whoTitle: 'Біз кімбіз —',
+                whoP1: 'Madeniet — Қазақстанның заманауи мәдениеті туралы медиа. Кино, музыка, сән, стендап және мұра туралы орыс және қазақ тілдерінде жазамыз. Біз отандық мәдениетті визуалды стильді әрі түсінікті етеміз — және қазір осы тәсілді баспаға көшіріп жатырмыз.',
+                whoFounder: 'журналдың негізін қалаушы — режиссёр Қуаныш Бейсек',
+                whoLink: '→ біз қалай жазатынымызды қараңыз: madeniet.com',
+                numNote: 'instagram insights, 2026 ж. 4 маусым – 4 шілде. таза органика, таргетсіз.',
+                statL1: '30 күндегі қаралым',
+                statL2: 'қамтылған аккаунттар',
+                statL3: 'органикалық трафик',
+                statL4: 'қаралымның — жаңа аудитория',
+                issueTitle: 'Сіздерді шақырып отырған сан —',
+                issueIntro: 'Madeniet-тің алғашқы баспа саны. Alem Comedy Fest-пен — елдің басты комедия фестивалімен — қос мұқаба. Журнал фест алаңдарында және қалалық дистрибуцияда таныстырылады.',
+                isL1: 'шығу', isV1: 'қыркүйек 2026',
+                isL2: 'мұқаба', isV2: 'қос, × Alem Comedy Fest',
+                isL3: 'ішінде', isV3: '5+ үлкен материал',
+                c1t: 'Димаш Құдайберген',
+                c1d: 'Елдің ең танымал дауысымен үлкен сұхбат.',
+                c2t: '«7 қарақшы» — премьера',
+                c2d: 'Қуаныш Бейсектің «7 қарақшы» фильмі және оны жасаған адамдар туралы материал.',
+                c3t: 'Архивтер: Шәкен Айманов',
+                c3d: 'Ең оқылатын айдарымыз — Қазақстанның тарихы мен мұрасы — алғаш рет қағазда. Орталық материал — қазақ киносының атасы Шәкен Айманов туралы.',
+                c4t: 'Қос мұқаба × Alem Comedy Fest',
+                c4d: 'Комедия — жаңа қазақ мәдениеті ретінде: фест кейіпкерлері, сахна сырты, жанр туралы үлкен әңгіме.',
+                c5t: '50 жылдан кейінгі мәдениет',
+                c5d: '20 кейіпкер — режиссёрлер, музыканттар, суретшілер — 2076 жылғы қазақ мәдениетін қалай көретіні туралы.',
+                cMore: '…және тағы басқасы — санның толық құрамын кездесуде көрсетеміз',
+                issuePhoto: 'photo — №1 мұқаба макеті',
+                offerTitle: 'Hyundai-ға не ұсынамыз —',
+                offerIntro: 'Бес формат — бір жайылмадан титулдық серіктестікке дейін. Бұл конструктор: беттерді прайспен сатпаймыз, пакетті сіздердің міндеттеріңізге қарай жинаймыз.',
+                of1t: 'Санның титулдық серіктестігі',
+                of1d: '«№1 сан — Hyundai қолдауымен». Мұқабада, шығу деректерінде және санның барлық коммуникацияларында болу — баспада, диджиталда, іс-шараларда.',
+                of2t: '«Шабыт бағыттары» спешл-жобасы',
+                of2d: 'Қазақстанның киелі жерлері бойынша Hyundai автомобилімен фотожоба — жоғарыда сипатталған идея. Қозғалыс пен мәдениет туралы тарих, жарнама емес.',
+                ofLink: '→ идеяны толық қарау',
+                of3t: 'Сандағы жайылма',
+                of3d: 'Мәдениет туралы журналда қалдыруға ұят емес жарнамалық жайылма: дизайнын біздің редакция сан эстетикасында жасайды.',
+                of4t: 'Іс-шаралардағы серіктестік',
+                of4d: 'Санның тұсаукесерінде және Alem Comedy Fest алаңдарында бренд қатысуы — журнал алғаш рет аудиторияның қолына тиетін жерде.',
+                of5t: 'Диджитал күшейту',
+                of5d: 'Спешл-жоба материалдары Madeniet әлеуметтік желілерінде де шығады: айына 2,85 млн қаралым баспа қамтуына қосылады.',
+                offerOutro: 'Бюджет пен пакет құрамын кездесуде талқылаймыз — сіздердің KPI мен күнтізбеге қарай. Міндет туралы айтыңыз, 2–3 нұсқа ұсынамыз.',
+                contactTitle: 'Серіктестікті талқылау —',
+                meetP: 'Кездесу форматы — сіздерге қалай ыңғайлы болса, солай: офистеріңізге барамыз, өзімізге шақырамыз немесе 20 минутқа қоңырауласамыз. Асыға күтеміз.',
+                role2: 'ассистент',
+                dlBtn: 'Медиакитті жүктеу (PDF)',
+              };
+
+              componentDidMount() {
+        const modal = document.querySelector("[data-welcome]");
+        const closeButton = document.querySelector("[data-welcome-close]");
+
+        if (!modal) return;
+
+        document.body.style.overflow = "hidden";
+
+        const closeModal = () => {
+          modal.style.opacity = "0";
+          modal.style.pointerEvents = "none";
+
+          setTimeout(() => {
+            modal.remove();
+            document.body.style.overflow = "";
+          }, 300);
+        };
+
+        // Закрытие по кнопке
+        if (closeButton) {
+          closeButton.addEventListener("click", (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            closeModal();
+          });
+        }
+
+        // Закрытие по клику на фон
+        modal.addEventListener("click", (e) => {
+          if (e.target === modal) {
+            closeModal();
+          }
+        });
+      }
+
+              setLang(lang) {
+                if (lang === this.lang) return;
+                this.lang = lang;
+                try { localStorage.setItem('madeniet-lang', lang); } catch (e) {}
+                document.querySelectorAll('[data-lang-btn]').forEach((btn) => {
+                  btn.style.color = btn.getAttribute('data-lang-btn') === lang ? '#111' : '#888';
+                });
+                document.querySelectorAll('[data-i18n]').forEach((el, i) => {
+                  const key = el.getAttribute('data-i18n');
+                  if (lang === 'kz') {
+                    if (this.KZ[key] == null) return;
+                    if (this.ruCache['el' + i] == null) this.ruCache['el' + i] = el.innerHTML;
+                    el.innerHTML = this.KZ[key];
+                  } else {
+                    if (this.ruCache['el' + i] != null) el.innerHTML = this.ruCache['el' + i];
+                  }
+                });
+                if (this.statsRef.current) {
+                  const fmt = this.fmtFactory(lang);
+                  this.statsRef.current.querySelectorAll('[data-stat]').forEach((el) => {
+                    const parts = (el.getAttribute('data-stat') || '0|%').split('|');
+                    el.textContent = fmt(parseFloat(parts[0]), parts[1]);
+                  });
+                }
+                document.documentElement.setAttribute('lang', lang === 'kz' ? 'kk' : 'ru');
+              }
+
+              fmtFactory(lang) {
+                const thousands = lang === 'kz' ? ' мың' : ' тыс.';
+                return (v, kind) => {
+                  if (kind === 'm') return v.toFixed(2).replace('.', ',') + ' млн';
+                  if (kind === '%') return Math.round(v) + '%';
+                  return Math.round(v) + thousands;
+                };
+              }
+
+              componentWillUnmount() {
+                if (this.obs) this.obs.disconnect();
+                if (this.raf) cancelAnimationFrame(this.raf);
+              }
+
+              animate() {
+                const els = Array.from(this.statsRef.current.querySelectorAll('[data-stat]'));
+                const targets = els.map((el) => {
+                  const parts = (el.getAttribute('data-stat') || '0|%').split('|');
+                  return { el, val: parseFloat(parts[0]), kind: parts[1] };
+                });
+                const start = performance.now();
+                const dur = 1400;
+                const tick = (now) => {
+                  const t = Math.min(1, (now - start) / dur);
+                  const eased = 1 - Math.pow(1 - t, 3);
+                  const fmt = this.fmtFactory(this.lang);
+                  targets.forEach((s) => { s.el.textContent = fmt(s.val * eased, s.kind); });
+                  if (t < 1) this.raf = requestAnimationFrame(tick);
+                };
+                this.raf = requestAnimationFrame(tick);
+              }
+
+              renderVals() {
+                return { statsRef: this.statsRef };
+              }
+            }
+    </script>
+  </body>
+</html>
